@@ -1,0 +1,10 @@
+[
+    {
+        "ParameterKey": "SourceBucketName",
+        "ParameterValue": "my-source-encoder-bucket"
+    },
+    {
+        "ParameterKey": "DestinationBucketName",
+        "ParameterValue": "my-dest-encoder-bucket"
+    }
+]

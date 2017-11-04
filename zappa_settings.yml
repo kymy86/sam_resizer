@@ -1,0 +1,35 @@
+---
+encoder:
+  runtime: python3.6
+  debug: true
+  keep_warm: false
+  log_level: DEBUG
+  apigateway_enabled: false
+  project_name: sam_thumb
+  lambda_description: Create a thumbnail of images in S3
+  timeout_seconds: 30
+  memory_size: 128
+  use_precompiled_packages: true
+  exclude:
+  - .vscode
+  - sam_resizer.yml
+  - README.md
+  - venv
+  - LICENSE
+  - .gitignore
+  - .git
+  - parameters.json
+  lambda_handler: resizer.lambda_handler
+  manage_roles: false
+  role_name: SamResizerRole
+  aws_environment_variables:
+    DEST_BUCKET_NAME: my-dest-encoder-bucket
+    THUMB_SIZE: "300"
+  events:
+  - function: resizer.lambda_handler
+    event_source: 
+      arn: arn:aws:s3:::my-source-encoder-bucket
+      events:
+      - s3:ObjectCreated:*
+      suffix: .jpg
+
